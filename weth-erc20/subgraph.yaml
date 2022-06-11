@@ -1,0 +1,50 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: erc20-90
+    network: mainnet
+    source:
+      address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      abi: IERC20
+      startBlock: 4719568
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ERC20Contract
+      abis:
+        - name: IERC20
+          file: ./node_modules/@openzeppelin/contracts/build/contracts/IERC20Metadata.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./node_modules/@openzeppelin/subgraphs/src/datasources/erc20.ts
+  - kind: ethereum/contract
+    name: erc20-90-1
+    network: mainnet
+    source:
+      address: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      abi: WETH9
+      startBlock: 4719568
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - Withdrawal
+        - ERC20Contract
+      abis:
+        - name: WETH9
+          file: ./abis/WETH9.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdrawal(indexed address,uint256)
+          handler: handleWithdrawal
+      file: ./src/mappings/weth9.ts  

@@ -1,0 +1,30 @@
+{
+  "name": "weth-erc20",
+  "private": true,
+  "license": "MIT",
+  "version": "1.0.0",
+  "author": "ashirleyshe",
+  "scripts": {
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "create-local": "graph create --node http://127.0.0.1:8020/ weth-subgraph",
+    "remove-local": "graph remove --node http://127.0.0.1:8020/ weth-subgraph",
+    "deploy-local": "graph deploy --node http://127.0.0.1:8020/ --ipfs http://127.0.0.1:5001/ weth-subgraph",
+    "deploy:hosted": "yarn graph deploy ashirleyshe/weth-subgraph --product hosted-service",
+    "deploy:studio": "yarn graph deploy --studio weth-subgraph",
+    "create-node-113": "graph create --node http://10.132.83.113:8020/ weth-subgraph",
+    "remove-node-113": "graph remove --node http://10.132.83.113:8020/ weth-subgraph",
+    "deploy-node-113": "graph deploy --node http://10.132.83.113:8020/ --ipfs http://10.132.83.113:8501/ weth-subgraph"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.30.0",
+    "@graphprotocol/graph-ts": "^0.27.0",
+    "@openzeppelin/subgraphs": "^0.1.8",
+    "matchstick-as": "^0.3.0",
+    "ejs": "^3.1.6",
+    "handlebars": "^4.7.7",
+    "mustache": "^4.2.0",
+    "prettier": "^2.0.0",
+    "typescript": "^4.0.0"
+  }
+}
